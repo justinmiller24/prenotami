@@ -42,19 +42,6 @@ def handle_timeout(driver, attempt):
 
 class Prenota:
     @staticmethod
-    def change_language(driver):
-        try:
-            driver.get("https://prenotami.esteri.it/Language/ChangeLanguage?lang=2")
-            time.sleep(5)
-            logging.info(
-                f"Timestamp: {str(datetime.now())} - Changed Language to EN."
-            )
-            return True
-        except Exception as e:
-            logging.info(f"Exception {e}")
-            return False
-
-    @staticmethod
     def check_file_exists(file_name):
         file_path = os.path.join(os.getcwd(), file_name)
         return os.path.isfile(file_path)
@@ -146,9 +133,6 @@ class Prenota:
 
             if not Prenota.login(driver, email, password):
                 sys.exit("Failed to login")
-
-#            if not Prenota.change_language(driver):
-#                sys.exit("Failed to change language")
 
             for i in range(100000):
                 random_number = random.randint(10, 40)
